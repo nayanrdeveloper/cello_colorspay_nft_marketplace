@@ -9,14 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@celo/rainbowkit-celo": "^0.2.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
+    "ethers": "^5.7.2",
     "next": "13.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.6.0",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "wagmi": "^0.7.10"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

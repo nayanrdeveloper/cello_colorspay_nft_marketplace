@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 function cube() {
+  const router = useRouter();
   interface inputColorStruct {
     color1: string;
     color2: string;
@@ -13,6 +15,21 @@ function cube() {
     color3: "#878796",
     size: '0',
   });
+
+  const createNFT = () => {
+    const property = {
+      backgroundColor: inputColor.color1,
+      backgroundImage: `linear-gradient(30deg, ${inputColor.color2} 12%, transparent 12.5%, transparent 87%, ${inputColor.color2} 87.5%, ${inputColor.color2}),linear-gradient(150deg, ${inputColor.color2} 12%, transparent 12.5%, transparent 87%, ${inputColor.color2} 87.5%, ${inputColor.color2}),linear-gradient(30deg, ${inputColor.color2} 12%, transparent 12.5%, transparent 87%, ${inputColor.color2} 87.5%,${inputColor.color2}),linear-gradient(150deg, ${inputColor.color2} 12%, transparent 12.5%, transparent 87%, ${inputColor.color2} 87.5%, ${inputColor.color2}),linear-gradient(60deg, ${inputColor.color3} 25%, transparent 25.5%, transparent 75%, ${inputColor.color3} 75%, ${inputColor.color3}),linear-gradient(60deg, ${inputColor.color3} 25%, transparent 25.5%, transparent 75%, ${inputColor.color3} 75%, ${inputColor.color3})`,
+      backgroundSize: `${80 + parseInt(inputColor.size)}px ${
+        140 + (2 + parseInt(inputColor.size))
+      }px`,
+      backgroundPosition: `0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px`,
+    };
+    window.localStorage.setItem("gradient_color", JSON.stringify(property));
+    router.push({
+      pathname: `create_nft`,
+    });
+  };
   return (
     <div className="container px-5 py-10">
       <div className="fade-in-text">
@@ -84,6 +101,12 @@ function cube() {
                 }}
               />
             </div>
+            <button
+              onClick={createNFT}
+              className="hover:bg-[#212e48] w-40 py-2 px-2 rounded-xl text-white bg-[#00a3ff] duration-300"
+            >
+              Create NFT
+            </button>
           </div>
           <div
             className="flex border border-black gradient-preview w-44 h-44 md:w-96 md:h-96 md:ml-52"
@@ -99,9 +122,6 @@ function cube() {
             // onClick={onClickHandler}
             //   ref={previewRef}
           >
-            <span className="text-center text-white text-2xl cursor-pointer self-center mx-auto p-16 md:p-40 opacity-0 hover:opacity-100">
-              {/* {isCopiedText ? "Copied" : "Copy"} */}
-            </span>
           </div>
         </div>
       </div>

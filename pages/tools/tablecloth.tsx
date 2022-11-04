@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import hexToRGB from "../../utils/hextorgb.js";
+import { useRouter } from "next/router";
 
 function tablecloth() {
+  const router = useRouter();
   interface inputColorStruct {
     backgroundColor: string;
     verticalColor: string;
@@ -20,6 +22,23 @@ function tablecloth() {
     verticalTransparent: 0.5,
     horizontalTransparent: 0.5,
   });
+  const createNFT = () => {
+    const property = {
+      backgroundColor: inputColors.backgroundColor,
+      backgroundImage: `linear-gradient(90deg, ${hexToRGB(
+        inputColors.verticalColor,
+        inputColors.verticalTransparent
+      )} 50%, transparent 50%),linear-gradient(${hexToRGB(
+        inputColors.horizontalColor,
+        inputColors.horizontalTransparent
+      )} 50%, transparent 50%)`,
+      backgroundSize: `${inputColors.verticalSpace}px ${inputColors.horizontalSpace}px`,
+    };
+    window.localStorage.setItem("gradient_color", JSON.stringify(property));
+    router.push({
+      pathname: `create_nft`,
+    });
+  };
   return (
     <div className="container px-5 py-10">
       <div className="fade-in-text">
@@ -139,6 +158,12 @@ function tablecloth() {
                 }}
               />
             </div>
+            <button
+              onClick={createNFT}
+              className="hover:bg-[#212e48] w-40 py-2 px-2 rounded-xl text-white bg-[#00a3ff] duration-300"
+            >
+              Create NFT
+            </button>
           </div>
           <div>
             <div
@@ -154,15 +179,7 @@ function tablecloth() {
                 )} 50%, transparent 50%)`,
                 backgroundSize: `${inputColors.verticalSpace}px ${inputColors.horizontalSpace}px`,
               }}
-
-              // onMouseLeave={(event) => setIsCopiedText(false)}
-              // onClick={onClickHandler}
-              //   ref={previewRef}
-            >
-              <span className="text-center text-white text-2xl cursor-pointer self-center mx-auto p-16 md:p-40 opacity-0 hover:opacity-100">
-                {/* {isCopiedText ? "Copied" : "Copy"} */}
-              </span>
-            </div>
+            ></div>
           </div>
         </div>
       </div>

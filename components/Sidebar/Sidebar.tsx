@@ -14,14 +14,14 @@ function Sidebar() {
     to: string;
   }
   const menuItemList: menuItemObj[] = [
-    { name: "CROSS DOTS", image: GiGamepadCross, to: "/cross_dots" },
-    { name: "HORIZONTAL STRIPS", image: FaGripHorizontal, to: "/horizontal_strips" },
-    { name: "WAVES", image: GiWaves, to: "/waves" },
-    { name: "TABLECLOTH", image: ImTable, to: "/tablecloth" },
-    { name: "Cube", image: FaCubes, to: "/cubes" },
-    { name: "Bricks", image: BsBricks, to: "/bricks" },
-    { name: "DIAGONAL", image: FaChessBoard, to: "/diagonal" },
-    { name: "VERTICAL STRIPS", image: FaGripLinesVertical, to: "/vertical_strips" },
+    { name: "CROSS DOTS", image: GiGamepadCross, to: "/tools/cross_dots" },
+    { name: "HORIZONTAL STRIPS", image: FaGripHorizontal, to: "/tools/horizontal_strips" },
+    { name: "WAVES", image: GiWaves, to: "/tools/waves" },
+    { name: "TABLECLOTH", image: ImTable, to: "/tools/tablecloth" },
+    { name: "Cube", image: FaCubes, to: "/tools/cube" },
+    { name: "Bricks", image: BsBricks, to: "/tools/bricks" },
+    { name: "DIAGONAL", image: FaChessBoard, to: "/tools/diagonal" },
+    { name: "VERTICAL STRIPS", image: FaGripLinesVertical, to: "/tools/vertical_strips" },
   ];
   return (
     <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap  px-0 flex flex-wrap items-center w-full mx-auto border-r gap-8">

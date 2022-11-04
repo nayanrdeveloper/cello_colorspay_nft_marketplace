@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 function vertical_strips() {
+  const router = useRouter();
   interface colorInputStruct {
     color1: string;
     color2: string;
@@ -11,6 +13,17 @@ function vertical_strips() {
     color2: "#ffffff",
     gap: 50,
   });
+  const createNFT = () => {
+    const property = {
+      backgroundColor: colorInputs.color1,
+      backgroundImage: `linear-gradient(90deg, transparent 50%, ${colorInputs.color2} 50%)`,
+      backgroundSize: `${colorInputs.gap}px 50px`,
+    };
+    window.localStorage.setItem("gradient_color", JSON.stringify(property));
+    router.push({
+      pathname: `create_nft`,
+    });
+  };
   return (
     <div className="container px-5 py-10">
       <div className="fade-in-text">
@@ -65,6 +78,12 @@ function vertical_strips() {
                 }}
               />
             </div>
+            <button
+              onClick={createNFT}
+              className="hover:bg-[#212e48] w-40 py-2 px-2 rounded-xl text-white bg-[#00a3ff] duration-300"
+            >
+              Create NFT
+            </button>
           </div>
           <div
             className="flex border border-black gradient-preview w-44 h-44 md:w-96 md:h-96 md:ml-52"
@@ -73,13 +92,7 @@ function vertical_strips() {
               backgroundImage: `linear-gradient(90deg, transparent 50%, ${colorInputs.color2} 50%)`,
               backgroundSize: `${colorInputs.gap}px 50px`,
             }}
-            //   onMouseLeave={(event) => setIsCopiedText(false)}
-            //   onClick={onClickHandler}
-          >
-            <span className="text-center text-white text-2xl cursor-pointer self-center mx-auto p-16 md:p-40 opacity-0 hover:opacity-100">
-              {/* {isCopiedText ? "Copied" : "Copy"} */}
-            </span>
-          </div>
+          ></div>
         </div>
       </div>
     </div>

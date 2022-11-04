@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
 
 function horizontal_strips() {
+  const router = useRouter();
   interface inputColorStruct {
     backgroundColor: string;
     stripeColor: string;
@@ -26,6 +28,17 @@ function horizontal_strips() {
     navigator.clipboard.writeText(
       `background-color: ${inputColor.backgroundColor}; background-image: ${originalProperty.backgroundImage}; background-size: ${originalProperty.backgroundSize}`
     );
+  };
+  const createNFT = () => {
+    const property = {
+      backgroundColor: inputColor.backgroundColor,
+      backgroundImage: originalProperty.backgroundImage,
+      backgroundSize: originalProperty.backgroundSize,
+    };
+    window.localStorage.setItem("gradient_color", JSON.stringify(property));
+    router.push({
+      pathname: `create_nft`,
+    });
   };
   return (
     <div className="container px-5 py-10">
@@ -92,6 +105,12 @@ function horizontal_strips() {
                 }}
               />
             </div>
+            <button
+              onClick={createNFT}
+              className="hover:bg-[#212e48] w-40 py-2 px-2 rounded-xl text-white bg-[#00a3ff] duration-300"
+            >
+              Create NFT
+            </button>
           </div>
           <div>
             <div
@@ -101,11 +120,8 @@ function horizontal_strips() {
                 backgroundImage: originalProperty.backgroundImage,
                 backgroundSize: originalProperty.backgroundSize,
               }}
-              //   onMouseEnter={setBackgroundProperty}
               onClick={onClickHandler}
-              //   ref={previewRef}
             >
-              <span className="text-center text-white text-2xl cursor-pointer self-center mx-auto p-16 md:p-40 opacity-0 hover:opacity-100"></span>
             </div>
           </div>
         </div>
