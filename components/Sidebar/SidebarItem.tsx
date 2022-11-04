@@ -1,22 +1,20 @@
 import Link from "next/link";
 import React from "react";
+import { IconType } from "react-icons";
+
 
 interface menuItemObj {
   name: string;
-  image: string;
+  image: IconType;
   to: string;
 }
 
-function SidebarItem({ name, image, to }: menuItemObj) {
+function SidebarItem(data: menuItemObj) {
   return (
-    <li className="items-center flex gap-3" id="menu-button">
-      <img
-        src={image}
-        className="mr-2 text-sm opacity-75 w-14 h-14"
-        alt="dashboard"
-      />
-      <span className="text-xs uppercase py-3 font-bold block text-lightBlue-500 hover:text-lightBlue-600">
-        {name}
+    <li className="items-center flex gap-3 text-[#acacac] cursor-pointer hover:text-white duration-300" id="menu-button">
+      {<data.image className="w-10 h-10" />}
+      <span className="text-xs uppercase py-3 font-bold block">
+        {data.name}
       </span>
     </li>
   );
