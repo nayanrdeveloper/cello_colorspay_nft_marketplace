@@ -13,7 +13,7 @@ async function main() {
 
   await myToken.deployed();
 
-  console.log(`Marketplace deployed to ${myToken.address}`);
+  console.log(`Token deployed to ${myToken.address}`);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

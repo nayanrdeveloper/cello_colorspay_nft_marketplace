@@ -1,6 +1,7 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+pragma solidity >=0.7.0 <0.9.0;
 
+import "hardhat/console.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -19,67 +20,77 @@ contract Marketplace is ReentrancyGuard {
         owner = payable(msg.sender);
     }
 
-    struct ListedToken {
+    struct listedToken {
         uint256 itemId;
         uint256 _tokenId;
         address nftContract;
         address payable seller;
         address payable owner;
         uint256 price;
-        bool currtlyListed;
+        bool currentlyListed;
     }
 
-    mapping(uint256 => ListedToken) idToListedToken;
+    mapping(uint256 => listedToken) private idToListedToken;
 
-    function updateLIstedPrice(uint256 _updatePrice) public {
-        require(msg.sender == owner, "Only Ownrer update listed Price");
-        listingPrice = _updatePrice;
+    function updateListedPrice(uint256 _updateNewPrice) public {
+        require(owner == msg.sender, "Only Owner Change the price");
+        listingPrice = _updateNewPrice;
     }
 
     function getListedPrice() public view returns (uint256) {
         return listingPrice;
     }
 
-    function latestListedToken() public view returns (ListedToken memory) {
+    function latestListeddToken() public view returns (listedToken memory) {
         uint256 currentTokenId = _itemId.current();
         return idToListedToken[currentTokenId];
     }
 
-    event CreatedToken(
-        address indexed _nftAddresss,
-        uint256 tokenId,
-        uint256 itemId,
-        address indexed seller,
-        address indexed owner,
-        uint256 price
-    );
+    function getListedTokenByTokenId(uint _tokenId)
+        public
+        view
+        returns (listedToken memory)
+    {
+        return idToListedToken[_tokenId];
+    }
+
+    function getCurrentTokenId() public view returns (uint256) {
+        return _itemId.current();
+    }
 
     function createToken(
-        address nftAddress,
+        address nftContract,
         uint256 tokenId,
         uint256 _price
     ) public payable nonReentrant returns (uint256) {
-        require(_price > 0, "Price must be greater than 0");
+        require(_price > 0, "Price greate than 0 wei");
         require(
             msg.value == listingPrice,
-            "Pirce must be equal to listing price"
+            "Price must be Equal to listing Price"
         );
-        _itemId.current();
+        _itemId.increment();
         uint256 currentItemId = _itemId.current();
+        IERC721(nftContract).transferFrom(msg.sender, address(this), tokenId);
+        // require(msg.value == listingPrice, "Price are not enough for create token");
+        // require(_price > 0, "Price are greater 0");
+        // _itemId.increment();
+        // uint256 currentTokenId = _itemId.current();
+        // _safeMint(msg.sender, currentTokenId);
+        // _setTokenURI(currentTokenId, tokenURI);
 
-        IERC721(nftAddress).transferFrom(msg.sender, address(this), tokenId);
-        createListedToken(currentItemId, tokenId, nftAddress, _price);
+        createListedToken(currentItemId, tokenId, nftContract, _price);
+
         return currentItemId;
     }
 
     function createListedToken(
-        uint256 itemdId,
+        uint256 itemId,
         uint256 _tokenId,
         address nftContract,
         uint256 _price
     ) private {
-        idToListedToken[_tokenId] = ListedToken(
-            itemdId,
+        idToListedToken[_tokenId] = listedToken(
+            itemId,
             _tokenId,
             nftContract,
             payable(msg.sender),
@@ -87,58 +98,50 @@ contract Marketplace is ReentrancyGuard {
             _price,
             false
         );
-
-        emit CreatedToken(
-            nftContract,
-            _tokenId,
-            itemdId,
-            msg.sender,
-            address(0),
-            _price
-        );
     }
 
-    function getAllNFTs() public view returns (ListedToken[] memory) {
-        uint256 _totlaItems = _itemId.current();
-        uint currentIndex = 0;
-        ListedToken[] memory tokens = new ListedToken[](_totlaItems);
+    function getAllNFTs() public view returns (listedToken[] memory) {
+        uint256 tokenCount = _itemId.current();
+        uint256 indexNo = 0;
+        listedToken[] memory tokens = new listedToken[](tokenCount);
 
-        for (uint i = 0; i < _totlaItems; i++) {
-            ListedToken storage currentToken = idToListedToken[i + 1];
-            tokens[currentIndex] = currentToken;
-            currentIndex++;
+        for (uint i = 0; i < tokenCount; i++) {
+            uint currentTokenId = i + 1;
+            listedToken storage currentIem = idToListedToken[currentTokenId];
+            tokens[indexNo] = currentIem;
+            indexNo += 1;
         }
-
         return tokens;
     }
 
-    function getMyNfts() public view returns (ListedToken[] memory) {
-        uint256 _totalItems = _itemId.current();
-        uint256 myNftCount = 0;
-        uint256 index = 0;
+    function getMyNFT() public view returns (listedToken[] memory) {
+        uint256 currentTokenId = _itemId.current();
+        uint256 itemCount = 0;
+        uint256 currentIndex = 0;
 
-        for (uint i = 0; i < _totalItems; i++) {
+        for (uint i = 0; i < currentTokenId; i++) {
             if (
-                idToListedToken[i + 1].seller == msg.sender ||
-                idToListedToken[i + 1].owner == msg.sender
+                idToListedToken[i + 1].owner == msg.sender ||
+                idToListedToken[i + 1].seller == msg.sender
             ) {
-                myNftCount++;
+                itemCount += 1;
             }
         }
 
-        ListedToken[] memory myNfts = new ListedToken[](myNftCount);
-        for (uint i = 0; i < _totalItems; i++) {
+        listedToken[] memory tokens = new listedToken[](itemCount);
+
+        for (uint i = 0; i < currentTokenId; i++) {
             if (
-                idToListedToken[i + 1].seller == msg.sender ||
-                idToListedToken[i + 1].owner == msg.sender
+                idToListedToken[i + 1].owner == msg.sender ||
+                idToListedToken[i + 1].seller == msg.sender
             ) {
-                ListedToken storage currentToken = idToListedToken[i + 1];
-                myNfts[index] = currentToken;
-                index++;
+                listedToken storage currentToken = idToListedToken[i + 1];
+                tokens[currentIndex] = currentToken;
+                currentIndex += 1;
             }
         }
 
-        return myNfts;
+        return tokens;
     }
 
     function executeSale(address nftContract, uint256 itemId)
@@ -146,16 +149,16 @@ contract Marketplace is ReentrancyGuard {
         payable
         nonReentrant
     {
-        uint256 price = idToListedToken[itemId].price;
-        uint256 tokenId = idToListedToken[itemId]._tokenId;
+        uint price = idToListedToken[itemId].price;
+        uint tokenId = idToListedToken[itemId]._tokenId;
         require(
             msg.value == price,
-            "Please submit the asking price in order to complete this purchase"
+            "Please submit the asking price in order to complete the purchase"
         );
         idToListedToken[itemId].seller.transfer(msg.value);
         IERC721(nftContract).transferFrom(address(this), msg.sender, tokenId);
         idToListedToken[itemId].owner = payable(msg.sender);
-        idToListedToken[itemId].currtlyListed = true;
+        idToListedToken[itemId].currentlyListed = true;
         _soldItems.increment();
         payable(owner).transfer(listingPrice);
     }
