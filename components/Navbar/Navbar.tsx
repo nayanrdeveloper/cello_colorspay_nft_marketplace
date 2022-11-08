@@ -52,16 +52,22 @@ function Navbar() {
         })}
       </ul>
       <div className="my-auto flex">
-        <button
-          onClick={() =>
-            connect()
-              .then()
-              .catch((error) => console.log(error.message))
-          }
-          className="bg-[#212e48] py-2 px-2 rounded-xl text-white hover:bg-[#00a3ff]"
-        >
-          Connect Wallet
-        </button>
+        {address ? (
+          <div className="bg-[#212e48] py-2 px-2 rounded-xl text-white hover:bg-[#00a3ff]">
+            {address}
+          </div>
+        ) : (
+          <button
+            onClick={() =>
+              connect()
+                .then()
+                .catch((error) => console.log(error.message))
+            }
+            className="bg-[#212e48] py-2 px-2 rounded-xl text-white hover:bg-[#00a3ff]"
+          >
+            Connect Wallet
+          </button>
+        )}
       </div>
     </nav>
   );

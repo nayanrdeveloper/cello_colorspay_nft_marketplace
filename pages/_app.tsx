@@ -3,7 +3,12 @@ import type { AppProps } from "next/app";
 import Navbar from "../components/Navbar/Navbar";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Footer from "../components/Footer/Footer";
-import { CeloProvider, SupportedProviders } from "@celo/react-celo";
+import {
+  CeloProvider,
+  SupportedProviders,
+  Alfajores,
+  NetworkNames,
+} from "@celo/react-celo";
 import "@celo/react-celo/lib/styles.css";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -36,16 +41,22 @@ export default function App({ Component, pageProps }: AppProps) {
           },
         }}
         theme={{
-          primary: '#fff',
-          secondary: '#0d6efd',
-          text: '#c2d4f8',
-          textSecondary: '#8480ae',
-          textTertiary: '#ffffff',
-          muted: '#e2e8f0',
-          background: '#030205',
-          error: '#ef4444',
-          
-
+          primary: "#fff",
+          secondary: "#0d6efd",
+          text: "#c2d4f8",
+          textSecondary: "#8480ae",
+          textTertiary: "#ffffff",
+          muted: "#e2e8f0",
+          background: "#030205",
+          error: "#ef4444",
+        }}
+        networks={[Alfajores]}
+        network={{
+          name: NetworkNames.Alfajores,
+          rpcUrl: "https://alfajores-forno.celo-testnet.org",
+          graphQl: "https://alfajores-blockscout.celo-testnet.org/graphiql",
+          explorer: "https://alfajores-blockscout.celo-testnet.org",
+          chainId: 44787,
         }}
       >
         <div className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-nowrap md:overflow-hidden shadow-xl flex flex-wrap items-center justify-between relative md:w-60 z-10 py-4 px-6">
