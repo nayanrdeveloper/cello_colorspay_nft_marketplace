@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import hexToRGB from "../../utils/hextorgb.js";
 import { useRouter } from "next/router";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function tablecloth() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
   const router = useRouter();
   interface inputColorStruct {
     backgroundColor: string;
@@ -43,7 +50,10 @@ function tablecloth() {
     <div className="container px-5 py-10">
       <div className="fade-in-text">
         <div className="flex flex-wrap gap-4 md:gap-2">
-          <div className="flex flex-col gap-2 justify-items-center">
+          <div
+            className="flex flex-col gap-2 justify-items-center"
+            data-aos="fade-right"
+          >
             <div className="flex justify-items-center justify-between">
               <label htmlFor="gradient-type" className="mr-2 text-gray-500">
                 Background-color:
@@ -167,6 +177,7 @@ function tablecloth() {
           </div>
           <div>
             <div
+              data-aos="fade-left"
               className="flex border border-black gradient-preview w-44 h-44 md:w-96 md:h-96 md:ml-52"
               style={{
                 backgroundColor: inputColors.backgroundColor,

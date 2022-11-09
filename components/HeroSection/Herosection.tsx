@@ -1,8 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
+import AOS from "aos";
+import 'aos/dist/aos.css';
 
 function Herosection() {
+  useEffect(() => {
+    AOS.init({
+      duration : 1000
+    });
+  })
   return (
     <section className='grid grid-cols-2 container py-16'>
         <div className='flex flex-col gap-6' data-aos="fade-right">

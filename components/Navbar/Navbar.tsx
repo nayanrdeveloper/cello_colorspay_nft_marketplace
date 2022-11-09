@@ -15,25 +15,13 @@ function Navbar() {
       to: "/about",
     },
     {
-      name: "Sell NFT",
-      to: "/createNFT",
-    },
-    {
       name: "All NFT",
-      to: "/allNFTs",
+      to: "/getallnft",
     },
     {
       name: "My NFT",
       to: "/myNFTs",
-    },
-    {
-      name: "Blog Create",
-      to: "/blogCreate",
-    },
-    {
-      name: "Blog",
-      to: "/blogs",
-    },
+    }
   ];
   return (
     <nav className="flex justify-between py-3 border-b border-[#ffffff14] backdrop-blur-[9px] p-5">

@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 function cube() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+    });
+  });
   const router = useRouter();
   interface inputColorStruct {
     color1: string;
@@ -13,7 +20,7 @@ function cube() {
     color1: "#556666",
     color2: "#444455",
     color3: "#878796",
-    size: '0',
+    size: "0",
   });
 
   const createNFT = () => {
@@ -34,7 +41,10 @@ function cube() {
     <div className="container px-5 py-10">
       <div className="fade-in-text">
         <div className="flex gap-4 md:gap-2 flex-wrap">
-          <div className="flex flex-col gap-2 justify-items-center">
+          <div
+            className="flex flex-col gap-2 justify-items-center"
+            data-aos="fade-right"
+          >
             <div className="flex justify-items-center justify-between">
               <label htmlFor="gradient-type" className="mr-2 text-gray-500">
                 Color 1:
@@ -109,6 +119,7 @@ function cube() {
             </button>
           </div>
           <div
+            data-aos="fade-left"
             className="flex border border-black gradient-preview w-44 h-44 md:w-96 md:h-96 md:ml-52"
             style={{
               backgroundColor: inputColor.color1,
@@ -121,8 +132,7 @@ function cube() {
             // onMouseLeave={(event) => setIsCopiedText(false)}
             // onClick={onClickHandler}
             //   ref={previewRef}
-          >
-          </div>
+          ></div>
         </div>
       </div>
     </div>

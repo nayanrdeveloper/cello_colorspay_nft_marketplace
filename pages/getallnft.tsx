@@ -1,8 +1,11 @@
 import React from 'react'
+import AllNftLIst from '../components/NFTLIst/AllNftLIst'
 
 function getallnft() {
   return (
-    <div>getallnft</div>
+    <div>
+        <AllNftLIst />
+    </div>
   )
 }
 

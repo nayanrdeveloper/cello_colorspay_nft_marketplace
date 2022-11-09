@@ -297,5 +297,4 @@ const marketplaceAbi = [
     "type": "function"
   }
 ]
-
 export default marketplaceAbi;
