@@ -44,7 +44,6 @@ function create_nft() {
       link = document.createElement("a");
     let myImage = document.createElement("image");
     const myFile = await createImageFile(data, "gradient_color", "image/png");
-    console.log(myFile);
     return myFile;
   };
 
@@ -103,7 +102,11 @@ function create_nft() {
         .call();
       let price = Web3.utils.toWei(productData.price.toString(), "ether");
       listingPrice = await listingPrice.toString();
-      console.log(listingPrice);
+      // const gesLimit = await marketaplceContract.methods
+      //   .createToken(process.env.NEXT_PUBLIC_TOKEN_CONTRACT, tokenId, price)
+      //   .send({ from: address, value: price }).estimateGas();
+      //   console.log(gesLimit);
+        
       const result3 = await marketaplceContract.methods
         .createToken(process.env.NEXT_PUBLIC_TOKEN_CONTRACT, tokenId, price)
         .send({ from: address, value: price });

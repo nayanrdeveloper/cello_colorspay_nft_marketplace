@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTwitter, FaHouseUser } from "react-icons/fa";
 import { IconType } from "react-icons";
 import FooterSocialMedia from "./FooterSocialMedia";
 
@@ -10,28 +10,28 @@ function Footer() {
   }
   const socialMediaList: socialMediaListStruct[] = [
     {
-      icon: FaFacebook,
-      url: "",
+      icon: FaLinkedin,
+      url: "https://in.linkedin.com/in/nayanrdeveloper",
+    },
+    {
+      icon: FaGithub,
+      url: "https://github.com/nayanrdeveloper",
     },
     {
       icon: FaTwitter,
-      url: "",
-    },
+      url: "https://twitter.com/nayan_radadiya6",
+    }, 
     {
-      icon: FaInstagram,
-      url: "",
-    },
-    {
-      icon: FaLinkedin,
-      url: "",
-    },
+      icon: FaHouseUser,
+      url: "https://nayanrdeveloper-portfolio.netlify.app/",
+    }, 
   ];
   return (
     <footer className="px-16 py-8 border-t border-[#ffffff14]">
       <div className="flex justify-between text-[#acacac]">
         <div className="flex gap-2">
           <span className="border-r border-[#ffffff14] px-2">
-            ©2022 Nuron, Inc. All rights reserved
+            ©2022 NFTPattern, Inc. All rights reserved
           </span>
           <ul className="flex gap-2">
             <li>Terms</li>

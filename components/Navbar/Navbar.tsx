@@ -2,6 +2,9 @@ import React from "react";
 import NavLogo from "./NavLogo";
 import Link from "next/link";
 import { useCelo } from "@celo/react-celo";
+import { RiMenuLine } from "react-icons/ri";
+import {shortAddress} from "../../utils/shortaddress";
+// import colorSpy from "../../storeData";
 
 function Navbar() {
   const { connect, address } = useCelo();
@@ -20,12 +23,18 @@ function Navbar() {
     },
     {
       name: "My NFT",
-      to: "/myNFTs",
-    }
+      to: "/mynft",
+    },
   ];
+ 
   return (
     <nav className="flex justify-between py-3 border-b border-[#ffffff14] backdrop-blur-[9px] p-5">
-      {/* <NavLogo /> */}
+      {/* <button onClick={hideSidebar}> */}
+        <RiMenuLine
+          className="text-white w-7 h-7 my-auto m-0 p-0 cursor-pointer"
+        />
+        {/* {colorSpy.isHideSidebar} */}
+      {/* </button> */}
       <ul className="flex my-auto ml-7">
         {navItems.map((item) => {
           return (
@@ -42,7 +51,7 @@ function Navbar() {
       <div className="my-auto flex">
         {address ? (
           <div className="bg-[#212e48] py-2 px-2 rounded-xl text-white hover:bg-[#00a3ff]">
-            {address}
+            {shortAddress(address)}
           </div>
         ) : (
           <button
