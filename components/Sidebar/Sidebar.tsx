@@ -6,6 +6,7 @@ import {FaGripHorizontal, FaCubes, FaChessBoard, FaGripLinesVertical } from "rea
 import {GiGamepadCross, GiWaves} from "react-icons/gi"
 import {ImTable} from "react-icons/im"
 import {BsBricks} from "react-icons/bs"
+import {MdGradient, MdOutlineWbShade} from "react-icons/md"
 
 function Sidebar() {
   interface menuItemObj {
@@ -14,6 +15,8 @@ function Sidebar() {
     to: string;
   }
   const menuItemList: menuItemObj[] = [
+    { name: "Gradient Color", image: MdGradient, to: "/tools/gradient_tool" },
+    { name: "Shades", image: MdOutlineWbShade, to: "/tools/all_shades" },
     { name: "CROSS DOTS", image: GiGamepadCross, to: "/tools/cross_dots" },
     { name: "HORIZONTAL STRIPS", image: FaGripHorizontal, to: "/tools/horizontal_strips" },
     { name: "WAVES", image: GiWaves, to: "/tools/waves" },
