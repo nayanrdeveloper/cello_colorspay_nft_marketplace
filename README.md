@@ -23,11 +23,10 @@
 
 ## How to run in your Local environment
 
-<h2>Smart Contract Deploy<h2>
 <dl>
-    <dt>Step1: Clone GitHub Project on your PC</dt>
+<dt>Step1: Clone GitHub Project on your PC</dt>
     <dd>
-        https://github.com/nayanrdeveloper/cello_colorspay_nft_marketplace
+        git clone https://github.com/nayanrdeveloper/cello_colorspay_nft_marketplace
     </dd>
      <dt>Step2 (deploy smart contract):</dt>
      <dd>
@@ -36,25 +35,25 @@
      </dd>
      <dt>Step-3 (compile smart contract): </dt>
     <dd>
-        npx hardhat compile
-        This Project is used to hardhat for smart contract deploy
+        <ul>
+            <li>npx hardhat compile</li>
+            <li>This Project is used to hardhat for smart contract deploy</li>
+        <ul>
     </dd>
     <dt>Step-4 (deploy smart contract):  </dt>
     <dd>
-        npx hardhat --network alfajores  run scripts/deploy.js
-        When this command run after showing the console the following result
-        Marketplace deployed to [address]
-        MyToken deployed address are 0Xfdghfh34n5bghv859gkd34Sth
+        <ul>
+            <li>npx hardhat --network alfajores  run scripts/deploy.js</li>
+            <li>When this command run after showing the console the following result</li>
+            <li>Marketplace deployed to [address]</li>
+            <li>MyToken deployed address are 0Xfdghfh34n5bghv859gkd34Sth</li>
+        </ul>
     </dd>
     <dt>Step-5 (verify smart contract):  </dt>
     <dd>
         npx hardhat verify [address] [parameter] --network alfajores
     </dd>
-</dl>
-
-<h2>Run Project</h2>
-<dl>
-    <dt>Step- 1 : </dt>
+    <dt>Step- 6 : </dt>
     <dd>
         now go to the cello_colorspay_nft_marketplace directory and change the file env.example to .env and update the following changes
         <ul>
@@ -63,7 +62,7 @@
             <li>NEXT_PUBLIC_NFT_STORAGE_KEY = "api of nft.storage (IPFS)"</li>
         </ul>
     </dd>
-    <dt>Step- 2 :</dt>
+    <dt>Step- 7 :</dt>
     <dd>
         <ul>
             <li>npm install</li>
