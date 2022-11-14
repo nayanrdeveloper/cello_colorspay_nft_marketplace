@@ -1,34 +1,133 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div id="top"></div>
 
-## Getting Started
+# Project Title
 
-First, run the development server:
+<b>NFTPattern</b>
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Project Description
+    - NFTPattern are places to users create their own type pattern and sell it as an NFT.
+    - NFTPattern is many tools available for users can create different types of design patterns.
+    - User connect many wallets available so user easily connects with our app.
+    - Also users can use the design on any other side like any other design, it's a project, mobile, app, etc...
+    - NFTPattern are use a cello token so users sell and purchase only cello tokens because this project smart contract is deployed on alfajores testnet.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<!-- Run in Your local environment -->
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Prerequisites
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+- [nodejs](https://nodejs.org/en/download/) for backend smart contract deploy and testing
+- [MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) Chrome extension installed in your browser
+- [Hardhat](https://hardhat.org/) for local smart contracts deployement and testing
+- [nft.storage](https://nft.storage/) account for IPFS storage (free account).
+- [alfajores (testnet)](https://celo.org/developers/faucet) alfajores balance for your smart contract deploy and NFT mint
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## How to run in your Local environment
 
-## Learn More
+<h2>Smart Contract Deploy<h2>
+<dl>
+    <dt>Step1: Clone GitHub Project on your PC</dt>
+    <dd>
+        https://github.com/nayanrdeveloper/cello_colorspay_nft_marketplace
+    </dd>
+     <dt>Step2 (deploy smart contract):</dt>
+     <dd>
+        go to the project folder cello_colorspay_nft_marketplace/backend and run following command
+        npm install
+     </dd>
+     <dt>Step-3 (compile smart contract): </dt>
+    <dd>
+        npx hardhat compile
+        This Project is used to hardhat for smart contract deploy
+    </dd>
+    <dt>Step-4 (deploy smart contract):  </dt>
+    <dd>
+        npx hardhat --network alfajores  run scripts/deploy.js
+        When this command run after showing the console the following result
+        Marketplace deployed to [address]
+        MyToken deployed address are 0Xfdghfh34n5bghv859gkd34Sth
+    </dd>
+    <dt>Step-5 (verify smart contract):  </dt>
+    <dd>
+        npx hardhat verify [address] [parameter] --network alfajores
+    </dd>
+</dl>
 
-To learn more about Next.js, take a look at the following resources:
+<h2>Run Project</h2>
+<dl>
+    <dt>Step- 1 : </dt>
+    <dd>
+        now go to the cello_colorspay_nft_marketplace directory and change the file env.example to .env and update the following changes
+        <ul>
+            <li>NEXT_PUBLIC_MARKETPLACE_CONTRACT = "add address of marketplace"</li>
+            <li>NEXT_PUBLIC_TOKEN_CONTRACT = "add address of token"</li>
+            <li>NEXT_PUBLIC_NFT_STORAGE_KEY = "api of nft.storage (IPFS)"</li>
+        </ul>
+    </dd>
+    <dt>Step- 2 :</dt>
+    <dd>
+        <ul>
+            <li>npm install</li>
+            <li>npm run dev</li>
+            <li>Open your Project in browser (http://localhost:3000/)<li>
+        </ul>
+    </dd>
+</dl>
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Built With
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- [Solidity](https://docs.soliditylang.org/)
+- [Hardhat](https://hardhat.org/getting-started/)
+- [Next.js](https://nextjs.org/)
+- [ethers.js](https://docs.ethers.io/v5/)
+- [react-celo](https://github.com/celo-org/react-celo)
+- [TailwindCss](https://tailwindcss.com/)
 
-## Deploy on Vercel
+#### User interface
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The front end is built with Next JS it's framework of React, it allows users to mint new NFTS and they can find on the home page a complete roadmap for the entire NFT project.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The front-end is built using the following libraries:
+<ul>
+<li><b>Ethers.js:</b> used as interface between the UI and the deployed smart contract</li>
+<li><b>react-celo:</b> for conecting to wallet</li>
+<li><b>mobx:</b> for managing the app states (account, balance, blockchain) </li>
+<li><b>Tailwind CSS:</b> Styles using TailwindCss</li>  
+ </ul>
+
+![Home Page](screenshots/homepage_1.png)
+
+Connect Wallet
+
+![connect Wallet](screenshots/connect_wallet_2.png)
+
+Create new design pattern
+
+![Create new design pattern](screenshots/create_gradient_nft_3.png)
+
+Create NFT
+
+![Create NFT](screenshots/create_nft_4.png)
+
+All NFTs
+
+![All NFTs](screenshots/all_nft_5.png)
+
+NFT Detail
+
+![NFT Detail](screenshots/nft_detail_6.png)
+
+Color Shadow Pattern
+
+![Color Shadow](screenshots/shadow_design_pattern_7.png)
+
+Table cloth pattern
+
+![Table cloth pattern](screenshots/table_cloth_8.png)
+
+Cube Design pattern
+
+![Cube Pattern](screenshots/cube_design_9.png)
+
+About
+
+![About](screenshots/about_10.png)

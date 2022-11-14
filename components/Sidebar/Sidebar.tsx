@@ -24,10 +24,10 @@ function Sidebar() {
     { name: "Cube", image: FaCubes, to: "/tools/cube" },
     { name: "Bricks", image: BsBricks, to: "/tools/bricks" },
     { name: "DIAGONAL", image: FaChessBoard, to: "/tools/diagonal" },
-    { name: "VERTICAL STRIPS", image: FaGripLinesVertical, to: "/tools/vertical_strips" },
+    // { name: "VERTICAL STRIPS", image: FaGripLinesVertical, to: "/tools/vertical_strips" },
   ];
   return (
-    <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap  px-0 flex flex-wrap items-center w-full mx-auto border-r gap-8">
+    <div className="md:flex-col md:items-stretch md:min-h-full md:flex-nowrap  px-0 flex flex-wrap items-center w-full mx-auto border-r gap-8 overflow-hidden">
       <NavLogo />
       <ul className="md:flex-col md:min-w-full flex flex-col list-none gap-4">
         {menuItemList &&

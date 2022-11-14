@@ -98,7 +98,7 @@ function GradientColor() {
                 name="color1"
                 className="input-border"
                 value={color1}
-                onChange={(event) => setColor1(event.currentTarget.value)}
+                onChange={(event) => setColor2(event.currentTarget.value)}
               />
             </div>
             <div className="flex justify-items-center justify-between">

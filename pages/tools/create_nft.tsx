@@ -150,7 +150,7 @@ function create_nft() {
         >
           <div className="flex flex-col gap-2">
             <label htmlFor="name" className="text-[#acacac]">
-              Product Name
+              NFT Name
             </label>
             <input
               type="text"
@@ -178,7 +178,7 @@ function create_nft() {
           </div>
           <div className="flex flex-col gap-2">
             <label htmlFor="price" className="text-[#acacac]">
-              Product Price
+              NFT Price
             </label>
             <input
               type="number"
