@@ -10,11 +10,9 @@ import {
   NetworkNames,
 } from "@celo/react-celo";
 import "@celo/react-celo/lib/styles.css";
-import { StoreProvider } from "../components/storeProvider";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <StoreProvider {...pageProps}>
       <div>
         <CeloProvider
           dapp={{
@@ -72,6 +70,5 @@ export default function App({ Component, pageProps }: AppProps) {
           </div>
         </CeloProvider>
       </div>
-    </StoreProvider>
   );
 }
